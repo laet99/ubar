@@ -3,48 +3,73 @@ from tkinter import Tk, StringVar, ttk
 
 class Programa:
 
-	def __init__(self,nome,cardapio):
-		self.nome = nome
-		self.cardapio = cardapio
-		self.conta = []
+    def __init__(self,nome,cardapio):
+        self.nome = nome
+        self.cardapio = cardapio
+        self.conta = []
 
-	def conta(self, acumulado):
-		self.acumulado += acumulado
+    def conta(self, acumulado):
+        self.acumulado += acumulado
 
-	def adicionar(self, frame, comida, preco):
-	   	item_carrinho = tk.Label(frame, text=("- "+comida), font=fontep)
-	   	item_carrinho.pack()
-	   	self.conta.append(preco)
-	   	soma = sum(self.conta)
+    def adicionar(self, frame, comida, preco):
+        item_carrinho = tk.Label(frame, text=("- "+comida), font=fontep)
+        item_carrinho.pack()
+        self.conta.append(preco)
+        soma = sum(self.conta)
 
-	def pagar_conta(self):
-		global frame
-		frame.destroy()
-		f1.tkraise()
+    def pagar_conta(self):
+        global frame
+        frame.destroy()
+        f1.tkraise()
 		   	
-	def quit(self):
-		f1.tkraise()
+    def quit(self):
+        f1.tkraise()
 
-	def mostrar(self,frame):
-	    frame.tkraise()
-	    tk.Label(frame, text="Santo Pako", font=fonte3).pack()
-	    notebook = ttk.Notebook(frame)
-	    frame1 = ttk.Frame(notebook)
-	    frame2 = ttk.Frame(notebook)
-	    frame3 = ttk.Frame(notebook)
-	    notebook.add(frame1, text='Cardápio')
-	    notebook.add(frame2, text='Comanda')
-	    notebook.add(frame3, text='Fechar Conta')
-	    notebook.pack()
-	    tk.Button(frame, text="Voltar Pagina Inicial", command=self.quit, font=fonte, bg="grey").pack()
-	    tk.Label(frame1, text="Segue a baixo o cardápio do Santo Pako:", font=fonte).pack()
-	    tk.Button(frame1, width=25, text=self.cardapio[0][0], font=fontep, command=lambda:self.adicionar(frame2,self.cardapio[0][0], self.cardapio[0][1])).pack()
-	    tk.Button(frame1, width=25, text=self.cardapio[1][0], font=fontep, command=lambda:self.adicionar(frame2, self.cardapio[1][0], self.cardapio[1][1])).pack()
-	    tk.Button(frame1, width=35, text=self.cardapio[2][0], font=fontep, command=lambda:self.adicionar(frame2, self.cardapio[2][0], self.cardapio[2][1])).pack()
-	    tk.Label(frame2, text="Segue a baixo os seus pedidos ja feitos:", font=fonte).pack()
-	    tk.Label(frame3, text="Segue a baixo sua conta:", font=fonte).pack()
-	    tk.Button(frame3, text="pagar", font=fonte10, command=lambda:self.pagar_conta()).pack()
-
+    def mostrar(self,frame):
+        frame.tkraise()
+        tk.Label(frame, text=self.nome, font=fonte3).pack()
+        notebook = ttk.Notebook(frame)
+        frame1 = ttk.Frame(notebook)
+        frame2 = ttk.Frame(notebook)
+        frame3 = ttk.Frame(notebook)
+        notebook.add(frame1, text='Cardápio')
+        notebook.add(frame2, text='Comanda')
+        notebook.add(frame3, text='Fechar Conta')
+        notebook.pack()
+        tk.Button(frame, text="Voltar Pagina Inicial", command=lambda:self.quit(), font=fonte, bg="grey").pack()
+        tk.Label(frame1, text="Segue a baixo o cardápio do "+self.nome+":", font=fonte).pack()
+        tk.Button(frame1, width=25, text=self.cardapio[0][0], font=fontep, command=lambda:self.adicionar(frame2,self.cardapio[0][0], self.cardapio[0][1])).pack()
+        tk.Button(frame1, width=25, text=self.cardapio[1][0], font=fontep, command=lambda:self.adicionar(frame2, self.cardapio[1][0], self.cardapio[1][1])).pack()
+        tk.Button(frame1, width=35, text=self.cardapio[2][0], font=fontep, command=lambda:self.adicionar(frame2, self.cardapio[2][0], self.cardapio[2][1])).pack()
+        tk.Label(frame2, text="Segue a baixo os seus pedidos ja feitos:", font=fonte).pack()
+        conta = tk.Label(frame3, text="Segue a baixo sua conta:", font=fonte)
+        conta.pack()
+        tk.Button(frame3, text="pagar", font=fonte10, command=lambda:self.pagar_conta()).pack()
+        
+def quit(frame):
+    f1.tkraise()
+        
+def Informacoes_pessoais (frame):
+    frame.tkraise()
+    tkLabelTop = tk.Label(frame, text="Informações pessoais", font=fonte)
+    tkLabelTop.pack()
+    tkButtonQuit = tk.Button(frame, text="Voltar Pagina Inicial", command=quit(f7), font=fonte)
+    tkButtonQuit.pack()
+        
+def Ultimas_compras(frame):
+    frame.tkraise()
+    tkLabelTop = tk.Label(frame, text="Ultimas Compras", font=fonte)
+    tkLabelTop.pack()
+    tkButtonQuit = tk.Button(frame, text="Voltar Pagina Inicial", command=quit, font=fonte)
+    tkButtonQuit.pack()
+        
+def Dados_pagamento(frame):
+    frame.tkraise()
+    tkLabelTop = tk.Label(frame, text="Dados Pagamento", font=fonte)
+    tkLabelTop.pack()
+    tkButtonQuit = tk.Button(frame, text="Voltar Pagina Inicial", command=quit, font=fonte)
+    tkButtonQuit.pack()
+    
 #Listas e fontes
 
 cardapio_sujinhus = [["Skol Litão: R$9,00", 9],["Frangolone: R$6,00", 6],["Pastel: R$5,00", 5]]
@@ -64,14 +89,14 @@ fonte2= ("Verdana", 16)
 conta_visual = []
 
 bixo = Programa("Bela Dama",cardapio_bela_dama)
-
 bixo2 = Programa("Santo Pako",cardapio_santo_pako)
-
 bixo3 = Programa("Sujinhus",cardapio_sujinhus)
+
 
 root = tk.Tk()
 root.geometry('700x600')
 root.title("Ubar")
+root.iconbitmap('favicon.ico')
 
 f1 = tk.Frame(root)
 f2 = tk.Frame(root)
