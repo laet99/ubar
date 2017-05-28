@@ -10,14 +10,11 @@ def adicionar(frame, comida, preco):
     item_carrinho.pack()
     conta.append(preco)
     soma = str(sum(conta))
+    conta_final.config(text="Sua conta é de " + soma + ",00R$")
 
 
-def pagar_conta(frame):
-    f1.tkraise()
-    frame.destroy()
-
-		
-def mostrar(frame, nome,cardapio):
+def mostrar(frame, nome, cardapio):
+    global conta_final
     frame.destroy()
     f3 = tk.Frame()
     f3.pack()
@@ -31,16 +28,21 @@ def mostrar(frame, nome,cardapio):
     notebook.add(frame2, text='Comanda')
     notebook.add(frame3, text='Fechar Conta')
     notebook.pack()
-    tk.Button(f3, text="Voltar Pagina Inicial", command=lambda:inicial(f3), font=fonte, bg="grey").pack()
     tk.Label(frame1, text="Segue a baixo o cardápio do "+nome+":", font=fonte).pack()
     tk.Button(frame1, width=25, text=cardapio[0][0], font=fontep, command=lambda:adicionar(frame2,cardapio[0][0],cardapio[0][1])).pack()
     tk.Button(frame1, width=25, text=cardapio[1][0], font=fontep, command=lambda:adicionar(frame2, cardapio[1][0],cardapio[1][1])).pack()
     tk.Button(frame1, width=35, text=cardapio[2][0], font=fontep, command=lambda:adicionar(frame2, cardapio[2][0],cardapio[2][1])).pack()
     tk.Label(frame2, text="Segue a baixo os seus pedidos ja feitos: ", font=fonte).pack()
-    tk.Label(frame3, text=("Sua conta foi de: ")).pack()
-    tk.Button(frame3, text="pagar", font=fonte10, command=lambda:pagar_conta()).pack() 
-
-   
+    conta_final = tk.Label(frame3, text=("Você ainda não consumiu nada."))
+    conta_final.pack()
+    if sum(conta) < 0:
+        tk.Button(frame3, text="pagar", font=fonte10, command=lambda:inicial(f3)).pack() 
+        tk.Button(f3, text="Voltar Pagina Inicial", font=fonte, bg="grey").pack()
+    else:
+        tk.Button(frame3, text="pagar", font=fonte10).pack() 
+        tk.Button(f3, text="Voltar Pagina Inicial", command=lambda:inicial(f3), font=fonte, bg="grey").pack()
+        
+        
 def inicial(frame):
     frame.destroy()
     f2 = tk.Frame()
@@ -54,6 +56,7 @@ def inicial(frame):
     lb2 = tk.Label(f2, text="Qual opção voce deseja acessar?", font=fonte2).pack()
     bt5 = tk.Button(f2, width=25, text="Ultimas Compras", command=lambda:Ultimas_compras(f2), font=fonte, bg="orange").pack()
     bt6 = tk.Button(f2, width=25, text="Informações Pessoais", command=lambda:informacoes_pessoais(f2), font=fonte, bg="orange").pack()
+    
     
 def informacoes_pessoais(frame):
     frame.destroy()
@@ -114,8 +117,8 @@ def informacoes_pessoais(frame):
     venc.grid(row=15, column=1)
     cod = tk.Label(f3, text=cod_final)
     cod.grid(row=16, column=1)          
-    
     tk.Button(f3, text="Voltar Pagina Inicial", command=lambda:inicial(f3), font=fonte, bg="grey").grid(row=20, column=1)
+    
     
 def criar_conta(frame):
     global nome
@@ -132,7 +135,6 @@ def criar_conta(frame):
     global venc
     global code
     global senha1
-    
     frame.destroy()
     f3 = tk.Frame()
     f3.pack()
@@ -206,8 +208,6 @@ def criar_conta(frame):
     tk.Button(f3, text="Aplicar", command=lambda:entrar(f3), font=fonte, bg="grey").grid()
     tk.Label(f3, text="").grid()
    
-    
-
 
 def Ultimas_compras(frame):
     frame.destroy()
@@ -244,7 +244,6 @@ def entrar (frame):
     nume_final = nume.get()
     venc_final = venc.get()
     cod_final = code.get()
-        
     lista = [nome_final, senha_final]
     print(lista)
     frame.destroy()
@@ -269,9 +268,11 @@ def entrar (frame):
 
 
 
+conta = []
+
 cardapio_sujinhus = [["Skol Litão: R$9,00", 9],["Frangolone: R$6,00", 6],["Pastel: R$5,00", 5]]
-cardapio_santo_pako = [["Torre de chopp: R$65,00", 65],["Sucão 5L: R$105,00", 105],["Batata Frita com Cheddar e Bacon R$27", 27]]
-cardapio_bela_dama = [["Itaipava Litrão: R$7,00",7],["Provolone: R$34,00",34],["Polenta: R$19", 19]] 
+cardapio_santo_pako = [["Torre de chopp: R$65,00", 65],["Sucão 5L: R$105,00", 105],["Batata Frita com Cheddar e Bacon R$27,00", 27]]
+cardapio_bela_dama = [["Itaipava Litrão: R$7,00",7],["Provolone: R$34,00",34],["Polenta: R$19,00", 19]] 
 
 fontep= ("Verdana", 8)
 fonte10=("Verdana", 10)
