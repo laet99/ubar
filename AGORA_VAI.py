@@ -6,6 +6,7 @@ from tkinter import PhotoImage
 from tkinter import StringVar
 
 def adicionar(frame, comida, preco):
+    global soma
     item_carrinho = tk.Label(frame, text=("- "+comida), font=fontep)
     item_carrinho.pack()
     conta.append(preco)
@@ -35,15 +36,69 @@ def mostrar(frame, nome, cardapio):
     tk.Label(frame2, text="Segue a baixo os seus pedidos ja feitos: ", font=fonte).pack()
     conta_final = tk.Label(frame3, text=("Você ainda não consumiu nada."))
     conta_final.pack()
-    if sum(conta) < 0:
-        tk.Button(frame3, text="pagar", font=fonte10, command=lambda:inicial(f3)).pack() 
-        tk.Button(f3, text="Voltar Pagina Inicial", font=fonte, bg="grey").pack()
-    else:
-        tk.Button(frame3, text="pagar", font=fonte10).pack() 
-        tk.Button(f3, text="Voltar Pagina Inicial", command=lambda:inicial(f3), font=fonte, bg="grey").pack()
-        
-        
+    b1 = tk.Button(frame3, text="pagar", command=lambda:inicial1(f3), font=fonte10)
+    b2 = tk.Button(f3, text="Voltar Pagina Inicial", command=lambda:inicial2(f3), font=fonte, bg="grey")
+    b1.pack()
+    b2.pack()
+    
+    
+def inicial1(frame):
+    global conta
+    if sum(conta) > 0:
+        conta = []
+        frame.destroy()
+        f2 = tk.Frame()
+        f2.pack()
+        f2.tkraise()
+        lb1 = tk.Label(f2, width=50, text="Qual bar você vai frequentar?", font=fonte2).pack(padx=150, pady=10)
+        bt1 = tk.Button(f2, width=25, text="Bela Dama", command=lambda:mostrar(f2, "Bella Dama", cardapio_bela_dama), font=fonte, bg="red").pack()
+        bt2 = tk.Button(f2, width=25, text="Santo Pako", command=lambda:mostrar(f2, "Santo Pako", cardapio_santo_pako), font=fonte, bg="red").pack()
+        bt3 = tk.Button(f2, width=25, text="Sujinhus", command=lambda:mostrar(f2, "Sujinhus", cardapio_sujinhus), font=fonte, bg="red").pack()
+        lb3 = tk.Label(f2, text="").pack()
+        lb2 = tk.Label(f2, text="Qual opção voce deseja acessar?", font=fonte2).pack()
+        bt5 = tk.Button(f2, width=25, text="Ultimas Compras", command=lambda:Ultimas_compras(f2), font=fonte, bg="orange").pack()
+        bt6 = tk.Button(f2, width=25, text="Informações Pessoais", command=lambda:informacoes_pessoais(f2), font=fonte, bg="orange").pack()
+
+
+def inicial2(frame):
+    global conta
+    if sum(conta) == 0:
+        conta = []
+        frame.destroy()
+        f2 = tk.Frame()
+        f2.pack()
+        f2.tkraise()
+        lb1 = tk.Label(f2, width=50, text="Qual bar você vai frequentar?", font=fonte2).pack(padx=150, pady=10)
+        bt1 = tk.Button(f2, width=25, text="Bela Dama", command=lambda:mostrar(f2, "Bella Dama", cardapio_bela_dama), font=fonte, bg="red").pack()
+        bt2 = tk.Button(f2, width=25, text="Santo Pako", command=lambda:mostrar(f2, "Santo Pako", cardapio_santo_pako), font=fonte, bg="red").pack()
+        bt3 = tk.Button(f2, width=25, text="Sujinhus", command=lambda:mostrar(f2, "Sujinhus", cardapio_sujinhus), font=fonte, bg="red").pack()
+        lb3 = tk.Label(f2, text="").pack()
+        lb2 = tk.Label(f2, text="Qual opção voce deseja acessar?", font=fonte2).pack()
+        bt5 = tk.Button(f2, width=25, text="Ultimas Compras", command=lambda:Ultimas_compras(f2), font=fonte, bg="orange").pack()
+        bt6 = tk.Button(f2, width=25, text="Informações Pessoais", command=lambda:informacoes_pessoais(f2), font=fonte, bg="orange").pack()
+
+
 def inicial(frame):
+    global conta
+    usuario_final = usuario.get()
+    senha_final2 = senha.get()
+    if usuario_final == nome_final and senha_final == senha_final2:
+        conta = []
+        frame.destroy()
+        f2 = tk.Frame()
+        f2.pack()
+        f2.tkraise()
+        lb1 = tk.Label(f2, width=50, text="Qual bar você vai frequentar?", font=fonte2).pack(padx=150, pady=10)
+        bt1 = tk.Button(f2, width=25, text="Bela Dama", command=lambda:mostrar(f2, "Bella Dama", cardapio_bela_dama), font=fonte, bg="red").pack()
+        bt2 = tk.Button(f2, width=25, text="Santo Pako", command=lambda:mostrar(f2, "Santo Pako", cardapio_santo_pako), font=fonte, bg="red").pack()
+        bt3 = tk.Button(f2, width=25, text="Sujinhus", command=lambda:mostrar(f2, "Sujinhus", cardapio_sujinhus), font=fonte, bg="red").pack()
+        lb3 = tk.Label(f2, text="").pack()
+        lb2 = tk.Label(f2, text="Qual opção voce deseja acessar?", font=fonte2).pack()
+        bt5 = tk.Button(f2, width=25, text="Ultimas Compras", command=lambda:Ultimas_compras(f2), font=fonte, bg="orange").pack()
+        bt6 = tk.Button(f2, width=25, text="Informações Pessoais", command=lambda:informacoes_pessoais(f2), font=fonte, bg="orange").pack()
+
+
+def inicial3 (frame):
     frame.destroy()
     f2 = tk.Frame()
     f2.pack()
@@ -56,7 +111,7 @@ def inicial(frame):
     lb2 = tk.Label(f2, text="Qual opção voce deseja acessar?", font=fonte2).pack()
     bt5 = tk.Button(f2, width=25, text="Ultimas Compras", command=lambda:Ultimas_compras(f2), font=fonte, bg="orange").pack()
     bt6 = tk.Button(f2, width=25, text="Informações Pessoais", command=lambda:informacoes_pessoais(f2), font=fonte, bg="orange").pack()
-    
+
     
 def informacoes_pessoais(frame):
     frame.destroy()
@@ -117,7 +172,7 @@ def informacoes_pessoais(frame):
     venc.grid(row=15, column=1)
     cod = tk.Label(f3, text=cod_final)
     cod.grid(row=16, column=1)          
-    tk.Button(f3, text="Voltar Pagina Inicial", command=lambda:inicial(f3), font=fonte, bg="grey").grid(row=20, column=1)
+    tk.Button(f3, text="Voltar Pagina Inicial", command=lambda:inicial3(f3), font=fonte, bg="grey").grid(row=20, column=1)
     
     
 def criar_conta(frame):
@@ -164,9 +219,9 @@ def criar_conta(frame):
     venc.grid(row=15, column=1)
     code=tk.Entry(f3)
     code.grid(row=16, column=1)
-    senha1 = tk.Entry(f3)
+    senha1 = tk.Entry(f3, show="*")
     senha1.grid(row=18, column=1)
-    senha2 = tk.Entry(f3)
+    senha2 = tk.Entry(f3, show="*")
     senha2.grid(row=19, column=1)
     frase1 = tk.Label(f3, text="DADOS DO USUÁRIO")
     frase1.grid(row=2 , column=1)
@@ -215,7 +270,7 @@ def Ultimas_compras(frame):
     f4.pack()
     f4.tkraise()
     tk.Label(f4, text="Ultimas Compras", font=fonte).pack()
-    tk.Button(f4, text="Voltar Pagina Inicial", command=lambda:inicial(f4), font=fonte, bg="grey").pack()
+    tk.Button(f4, text="Voltar Pagina Inicial", command=lambda:inicial3(f4), font=fonte, bg="grey").pack()
     
     
 def entrar (frame):
@@ -231,6 +286,11 @@ def entrar (frame):
     global nume_final
     global venc_final 
     global cod_final
+    global usuario_final
+    global senha_final
+    global senha_final2
+    global usuario
+    global senha
     senha_final = senha1.get()
     nome_final = nome.get()
     nasc_final = nasc.get()
@@ -255,20 +315,13 @@ def entrar (frame):
     tk.Label(f1, text="senha:").grid(row=3, column=1)
     usuario = tk.Entry(f1)
     usuario.grid(row=2, column=2)
-    senha = tk.Entry(f1)
+    senha = tk.Entry(f1, show="*")
     senha.grid(row=3, column=2)
-    usuario_final = usuario.get()
-    senha_final2 = senha.get()
-    if usuario_final == nome_final and senha_final == senha_final2:
-        tk.Button(f1, text="entrar",  command=lambda:inicial(f1), font=fonte).grid(row=4, column=2)
-    else:
-        tk.Button(f1, text="entrar", command=lambda:inicial(f1), font=fonte).grid(row=4, column=2)
+    tk.Button(f1, text="entrar",  command=lambda:inicial(f1), font=fonte).grid(row=4, column=2)
     tk.Label(f1, text="ainda não é cadastrado?").grid(row=6, column=3)
     tk.Button(f1, text="clique aqui", command=lambda:criar_conta(f1)).grid(row=6, column=4)
 
 
-
-conta = []
 
 cardapio_sujinhus = [["Skol Litão: R$9,00", 9],["Frangolone: R$6,00", 6],["Pastel: R$5,00", 5]]
 cardapio_santo_pako = [["Torre de chopp: R$65,00", 65],["Sucão 5L: R$105,00", 105],["Batata Frita com Cheddar e Bacon R$27,00", 27]]
@@ -294,7 +347,7 @@ tk.Label(f1, text="UBAR", font=fonte3, fg="red").grid(row=0, column=2)
 tk.Label(f1, text="nome:").grid(row=2, column=1)
 tk.Entry(f1).grid(row=2, column=2)
 tk.Label(f1, text="senha:").grid(row=3, column=1)
-tk.Entry(f1).grid(row=3, column=2)
+tk.Entry(f1, show="*").grid(row=3, column=2)
 tk.Button(f1, text="entrar",  font=fonte).grid(row=4, column=2)
 tk.Label(f1, text="ainda não é cadastrado?").grid(row=6, column=3)
 tk.Button(f1, text="clique aqui", command=lambda:criar_conta(f1)).grid(row=6, column=4)
