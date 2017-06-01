@@ -30,9 +30,11 @@ def mostrar(frame, nome, cardapio):
     notebook.add(frame3, text='Fechar Conta')
     notebook.pack()
     tk.Label(frame1, text="Segue a baixo o cardápio do "+nome+":", font=fonte).pack()
-    tk.Button(frame1, width=25, text=cardapio[0][0], font=fontep, command=lambda:adicionar(frame2,cardapio[0][0],cardapio[0][1])).pack()
-    tk.Button(frame1, width=25, text=cardapio[1][0], font=fontep, command=lambda:adicionar(frame2, cardapio[1][0],cardapio[1][1])).pack()
+    tk.Button(frame1, width=35, text=cardapio[0][0], font=fontep, command=lambda:adicionar(frame2,cardapio[0][0],cardapio[0][1])).pack()
+    tk.Button(frame1, width=35, text=cardapio[1][0], font=fontep, command=lambda:adicionar(frame2, cardapio[1][0],cardapio[1][1])).pack()
     tk.Button(frame1, width=35, text=cardapio[2][0], font=fontep, command=lambda:adicionar(frame2, cardapio[2][0],cardapio[2][1])).pack()
+    tk.Button(frame1, width=35, text=cardapio[3][0], font=fontep, command=lambda:adicionar(frame2, cardapio[3][0],cardapio[3][1])).pack()
+    tk.Button(frame1, width=35, text=cardapio[4][0], font=fontep, command=lambda:adicionar(frame2, cardapio[4][0],cardapio[4][1])).pack()
     tk.Label(frame2, text="Segue a baixo os seus pedidos ja feitos: ", font=fonte).pack()
     conta_final = tk.Label(frame3, text=("Você ainda não consumiu nada."))
     conta_final.pack()
@@ -45,19 +47,20 @@ def mostrar(frame, nome, cardapio):
 def inicial1(frame):
     global conta
     if sum(conta) > 0:
+        historico.append(sum(conta))
         conta = []
         frame.destroy()
         f2 = tk.Frame()
         f2.pack()
         f2.tkraise()
         lb1 = tk.Label(f2, width=50, text="Qual bar você vai frequentar?", font=fonte2).pack(padx=150, pady=10)
-        bt1 = tk.Button(f2, width=25, text="Bela Dama", command=lambda:mostrar(f2, "Bella Dama", cardapio_bela_dama), font=fonte, bg="red").pack()
-        bt2 = tk.Button(f2, width=25, text="Santo Pako", command=lambda:mostrar(f2, "Santo Pako", cardapio_santo_pako), font=fonte, bg="red").pack()
-        bt3 = tk.Button(f2, width=25, text="Sujinhus", command=lambda:mostrar(f2, "Sujinhus", cardapio_sujinhus), font=fonte, bg="red").pack()
+        bt1 = tk.Button(f2, width=25, text="Bela Dama", command=lambda:mostrar(f2, "Bella Dama", cardapio_bela_dama), font=fonte, bg="white").pack()
+        bt2 = tk.Button(f2, width=25, text="Santo Pako", command=lambda:mostrar(f2, "Santo Pako", cardapio_santo_pako), font=fonte, bg="white").pack()
+        bt3 = tk.Button(f2, width=25, text="Sujinhus", command=lambda:mostrar(f2, "Sujinhus", cardapio_sujinhus), font=fonte, bg="white").pack()
         lb3 = tk.Label(f2, text="").pack()
         lb2 = tk.Label(f2, text="Qual opção voce deseja acessar?", font=fonte2).pack()
-        bt5 = tk.Button(f2, width=25, text="Ultimas Compras", command=lambda:Ultimas_compras(f2), font=fonte, bg="orange").pack()
-        bt6 = tk.Button(f2, width=25, text="Informações Pessoais", command=lambda:informacoes_pessoais(f2), font=fonte, bg="orange").pack()
+        bt5 = tk.Button(f2, width=25, text="Ultimas Compras", command=lambda:Ultimas_compras(f2), font=fonte, bg="white").pack()
+        bt6 = tk.Button(f2, width=25, text="Informações Pessoais", command=lambda:informacoes_pessoais(f2), font=fonte, bg="white").pack()
 
 
 def inicial2(frame):
@@ -69,13 +72,13 @@ def inicial2(frame):
         f2.pack()
         f2.tkraise()
         lb1 = tk.Label(f2, width=50, text="Qual bar você vai frequentar?", font=fonte2).pack(padx=150, pady=10)
-        bt1 = tk.Button(f2, width=25, text="Bela Dama", command=lambda:mostrar(f2, "Bella Dama", cardapio_bela_dama), font=fonte, bg="red").pack()
-        bt2 = tk.Button(f2, width=25, text="Santo Pako", command=lambda:mostrar(f2, "Santo Pako", cardapio_santo_pako), font=fonte, bg="red").pack()
-        bt3 = tk.Button(f2, width=25, text="Sujinhus", command=lambda:mostrar(f2, "Sujinhus", cardapio_sujinhus), font=fonte, bg="red").pack()
+        bt1 = tk.Button(f2, width=25, text="Bela Dama", command=lambda:mostrar(f2, "Bella Dama", cardapio_bela_dama), font=fonte, bg="white").pack()
+        bt2 = tk.Button(f2, width=25, text="Santo Pako", command=lambda:mostrar(f2, "Santo Pako", cardapio_santo_pako), font=fonte, bg="white").pack()
+        bt3 = tk.Button(f2, width=25, text="Sujinhus", command=lambda:mostrar(f2, "Sujinhus", cardapio_sujinhus), font=fonte, bg="white").pack()
         lb3 = tk.Label(f2, text="").pack()
         lb2 = tk.Label(f2, text="Qual opção voce deseja acessar?", font=fonte2).pack()
-        bt5 = tk.Button(f2, width=25, text="Ultimas Compras", command=lambda:Ultimas_compras(f2), font=fonte, bg="orange").pack()
-        bt6 = tk.Button(f2, width=25, text="Informações Pessoais", command=lambda:informacoes_pessoais(f2), font=fonte, bg="orange").pack()
+        bt5 = tk.Button(f2, width=25, text="Ultimas Compras", command=lambda:Ultimas_compras(f2), font=fonte, bg="white").pack()
+        bt6 = tk.Button(f2, width=25, text="Informações Pessoais", command=lambda:informacoes_pessoais(f2), font=fonte, bg="white").pack()
 
 
 def inicial(frame):
@@ -89,13 +92,13 @@ def inicial(frame):
         f2.pack()
         f2.tkraise()
         lb1 = tk.Label(f2, width=50, text="Qual bar você vai frequentar?", font=fonte2).pack(padx=150, pady=10)
-        bt1 = tk.Button(f2, width=25, text="Bela Dama", command=lambda:mostrar(f2, "Bella Dama", cardapio_bela_dama), font=fonte, bg="red").pack()
-        bt2 = tk.Button(f2, width=25, text="Santo Pako", command=lambda:mostrar(f2, "Santo Pako", cardapio_santo_pako), font=fonte, bg="red").pack()
-        bt3 = tk.Button(f2, width=25, text="Sujinhus", command=lambda:mostrar(f2, "Sujinhus", cardapio_sujinhus), font=fonte, bg="red").pack()
+        bt1 = tk.Button(f2, width=25, text="Bela Dama", command=lambda:mostrar(f2, "Bella Dama", cardapio_bela_dama), font=fonte, bg="white").pack()
+        bt2 = tk.Button(f2, width=25, text="Santo Pako", command=lambda:mostrar(f2, "Santo Pako", cardapio_santo_pako), font=fonte, bg="white").pack()
+        bt3 = tk.Button(f2, width=25, text="Sujinhus", command=lambda:mostrar(f2, "Sujinhus", cardapio_sujinhus), font=fonte, bg="white").pack()
         lb3 = tk.Label(f2, text="").pack()
         lb2 = tk.Label(f2, text="Qual opção voce deseja acessar?", font=fonte2).pack()
-        bt5 = tk.Button(f2, width=25, text="Ultimas Compras", command=lambda:Ultimas_compras(f2), font=fonte, bg="orange").pack()
-        bt6 = tk.Button(f2, width=25, text="Informações Pessoais", command=lambda:informacoes_pessoais(f2), font=fonte, bg="orange").pack()
+        bt5 = tk.Button(f2, width=25, text="Ultimas Compras", command=lambda:Ultimas_compras(f2), font=fonte, bg="white").pack()
+        bt6 = tk.Button(f2, width=25, text="Informações Pessoais", command=lambda:informacoes_pessoais(f2), font=fonte, bg="white").pack()
 
 
 def inicial3 (frame):
@@ -104,13 +107,13 @@ def inicial3 (frame):
     f2.pack()
     f2.tkraise()
     lb1 = tk.Label(f2, width=50, text="Qual bar você vai frequentar?", font=fonte2).pack(padx=150, pady=10)
-    bt1 = tk.Button(f2, width=25, text="Bela Dama", command=lambda:mostrar(f2, "Bella Dama", cardapio_bela_dama), font=fonte, bg="red").pack()
-    bt2 = tk.Button(f2, width=25, text="Santo Pako", command=lambda:mostrar(f2, "Santo Pako", cardapio_santo_pako), font=fonte, bg="red").pack()
-    bt3 = tk.Button(f2, width=25, text="Sujinhus", command=lambda:mostrar(f2, "Sujinhus", cardapio_sujinhus), font=fonte, bg="red").pack()
+    bt1 = tk.Button(f2, width=25, text="Bela Dama", command=lambda:mostrar(f2, "Bella Dama", cardapio_bela_dama), font=fonte, bg="white").pack()
+    bt2 = tk.Button(f2, width=25, text="Santo Pako", command=lambda:mostrar(f2, "Santo Pako", cardapio_santo_pako), font=fonte, bg="white").pack()
+    bt3 = tk.Button(f2, width=25, text="Sujinhus", command=lambda:mostrar(f2, "Sujinhus", cardapio_sujinhus), font=fonte, bg="white").pack()
     lb3 = tk.Label(f2, text="").pack()
     lb2 = tk.Label(f2, text="Qual opção voce deseja acessar?", font=fonte2).pack()
-    bt5 = tk.Button(f2, width=25, text="Ultimas Compras", command=lambda:Ultimas_compras(f2), font=fonte, bg="orange").pack()
-    bt6 = tk.Button(f2, width=25, text="Informações Pessoais", command=lambda:informacoes_pessoais(f2), font=fonte, bg="orange").pack()
+    bt5 = tk.Button(f2, width=25, text="Ultimas Compras", command=lambda:Ultimas_compras(f2), font=fonte, bg="white").pack()
+    bt6 = tk.Button(f2, width=25, text="Informações Pessoais", command=lambda:informacoes_pessoais(f2), font=fonte, bg="white").pack()
 
     
 def informacoes_pessoais(frame):
@@ -190,6 +193,7 @@ def criar_conta(frame):
     global venc
     global code
     global senha1
+    global senha2
     frame.destroy()
     f3 = tk.Frame()
     f3.pack()
@@ -269,7 +273,12 @@ def Ultimas_compras(frame):
     f4 = tk.Frame()
     f4.pack()
     f4.tkraise()
-    tk.Label(f4, text="Ultimas Compras", font=fonte).pack()
+    tk.Label(f4, text="Ultimas Compras", font=fonte3).pack()
+    tk.Label(f4, text=" ", font=fonte).pack()
+    mensagem = ""
+    for i in range (len(historico)): 
+        mensagem = mensagem + str(i+1) +  "° compra: R$ " + str(historico[i]) + ",00 \n"                                  
+    tk.Label(f4, text=mensagem, font=fonte).pack()                       
     tk.Button(f4, text="Voltar Pagina Inicial", command=lambda:inicial3(f4), font=fonte, bg="grey").pack()
     
     
@@ -291,6 +300,7 @@ def entrar (frame):
     global senha_final2
     global usuario
     global senha
+    senha_final3 = senha2.get()
     senha_final = senha1.get()
     nome_final = nome.get()
     nasc_final = nasc.get()
@@ -304,43 +314,67 @@ def entrar (frame):
     nume_final = nume.get()
     venc_final = venc.get()
     cod_final = code.get()
-    lista = [nome_final, senha_final]
-    print(lista)
-    frame.destroy()
-    f1 = tk.Frame()
-    f1.pack()
-    f1.tkraise()
-    tk.Label(f1, text="UBAR", font=fonte3, fg="red").grid(row=0, column=2)
-    tk.Label(f1, text="nome:").grid(row=2, column=1)
-    tk.Label(f1, text="senha:").grid(row=3, column=1)
-    usuario = tk.Entry(f1)
-    usuario.grid(row=2, column=2)
-    senha = tk.Entry(f1, show="*")
-    senha.grid(row=3, column=2)
-    tk.Button(f1, text="entrar",  command=lambda:inicial(f1), font=fonte).grid(row=4, column=2)
-    tk.Label(f1, text="ainda não é cadastrado?").grid(row=6, column=3)
-    tk.Button(f1, text="clique aqui", command=lambda:criar_conta(f1)).grid(row=6, column=4)
+    if senha_final3 == senha_final:
+        lista = [nome_final, senha_final]
+        frame.destroy()
+        f1 = tk.Frame()
+        f1.pack()
+        f1.tkraise()
+        tk.Label(f1, text="UBAR", font=fonte3, fg="red").grid(row=0, column=2)
+        tk.Label(f1, text="nome:").grid(row=2, column=1)
+        tk.Label(f1, text="senha:").grid(row=3, column=1)
+        usuario = tk.Entry(f1)
+        usuario.grid(row=2, column=2)
+        senha = tk.Entry(f1, show="*")
+        senha.grid(row=3, column=2)
+        tk.Button(f1, text="entrar",  command=lambda:inicial(f1), font=fonte).grid(row=4, column=2)
+        tk.Label(f1, text="ainda não é cadastrado?").grid(row=6, column=3)
+        tk.Button(f1, text="clique aqui", command=lambda:criar_conta(f1)).grid(row=6, column=4)
 
 
-
-cardapio_sujinhus = [["Skol Litão: R$9,00", 9],["Frangolone: R$6,00", 6],["Pastel: R$5,00", 5]]
-cardapio_santo_pako = [["Torre de chopp: R$65,00", 65],["Sucão 5L: R$105,00", 105],["Batata Frita com Cheddar e Bacon R$27,00", 27]]
-cardapio_bela_dama = [["Itaipava Litrão: R$7,00",7],["Provolone: R$34,00",34],["Polenta: R$19,00", 19]] 
-
-fontep= ("Verdana", 8)
-fonte10=("Verdana", 10)
-fonte = ("Verdana", 12)
-fonte3= ("Verdana", 20)
-fonte2= ("Verdana", 16)
+historico=[] #lista onde será adicionado as ultimas compras
 
 
-root = tk.Tk()
+cardapio_sujinhus = [["Skol Litão: R$9,00", 9],
+                     ["Frangolone: R$6,00", 6],
+                     ["Pastel: R$5,00", 5], 
+                     ["Coxinha: R$4,00", 4], 
+                     ["Prato Feito carne: R$20,00", 20]]
+                     
+                     
+cardapio_santo_pako = [["Torre de chopp: R$65,00", 65],
+                       ["Sucão 5L: R$105,00", 105],
+                       ["Batata Frita com Cheddar e Bacon: R$27,00", 27],
+                       ["Skol Litrão: R$14,00", 14],
+                       ["Porção Pastel: R$22,00", 22]]
+
+                       
+cardapio_bela_dama = [["Itaipava Litrão: R$7,00",7],
+                      ["Provolone: R$34,00",34],
+                      ["Polenta: R$19,00", 19],
+                      ["Pastel de Feira: R$6,00", 6],
+                      ["Dose 51: R$2,00", 2]]                      
+
+
+fontep = ("Verdana", 8) #fontes utilizadas
+fonte10= ("Verdana", 10)
+fonte  = ("Verdana", 12)
+fonte3 = ("Verdana", 20)
+fonte2 = ("Verdana", 16)
+
+
+root = tk.Tk() #criando a janela
 root.geometry('700x600')
 root.title("Ubar")
 root.iconbitmap('favicon.ico')
 
 
-f1 = tk.Frame()
+breja = PhotoImage(file = "C:\\Users\\João Laet\\Documents\\desing de software\\EP3\\breja.png") #imagem de fundo
+bgFt = tk.Label(root, image=breja)
+bgFt.place(x=0, y=140, relwidth=1, relheight=1)
+
+
+f1 = tk.Frame() #pagina inicial do login
 f1.pack()
 f1.tkraise()
 tk.Label(f1, text="UBAR", font=fonte3, fg="red").grid(row=0, column=2)
